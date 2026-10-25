@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pichetti & Pichetti — Churrascaria em Vacaria</title>
+<meta name="description" content="Almoço todos os dias e festas privadas. Churrascaria Pichetti & Pichetti, Vacaria – RS.">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1a1512;
+    --ink-2:#231c18;
+    --wine:#7a1f2b;
+    --wine-dark:#621823;
+    --gold:#c9a24f;
+    --cream:#f4f0ea;
+    --paper:#fcf9f5;
+    --card:#fffefc;
+    --text:#1a1512;
+    --muted:#6f645b;
+    --line:#e6dccd;
+    --wa:#1fb866;
+    --header-h:88px;
+  }
+
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans', system-ui, sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    margin:0;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', Georgia, serif;}
+  a{text-decoration:none;}
+  section[id], header[id]{scroll-margin-top:var(--header-h);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition-duration:.001ms !important; animation-duration:.001ms !important;}
+  }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* ---------- Botões ---------- */
+  .btn-pp{
+    display:inline-flex; align-items:center; gap:.65rem;
+    font-weight:700; font-size:.78rem; letter-spacing:.09em; text-transform:uppercase;
+    padding:1.05rem 1.7rem; border-radius:0; border:1px solid var(--wine);
+    background:var(--wine); color:#fff;
+    transition:background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .btn-pp:hover{background:var(--wine-dark); border-color:var(--wine-dark); color:#fff;}
+  .btn-pp-outline{background:transparent; color:var(--wine);}
+  .btn-pp-outline:hover{background:var(--wine); color:#fff;}
+  .btn-pp.sm{padding:.9rem 1.5rem;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:1030;
+    background:var(--ink);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    min-height:var(--header-h);
+  }
+  .site-header .navbar{min-height:var(--header-h); padding:0;}
+  .brand{display:flex; align-items:center; gap:.9rem; color:#fff;}
+  /* Tamanho da logo: ajuste só a altura, a largura acompanha */
+  .brand-logo{height:64px; width:auto; max-width:100%; display:block;}
+  .site-footer .brand-logo{height:80px;}
+  .brand-name{font-family:'Playfair Display', serif; font-weight:600; font-size:1.3rem; line-height:1.1; color:#fff;}
+  .brand-name em{color:var(--gold); font-weight:500; margin:0 .1rem;}
+  .brand-sub{display:block; margin-top:.25rem; font-family:'DM Sans', sans-serif; font-size:.6rem; letter-spacing:.2em; color:var(--gold); text-transform:uppercase; font-weight:500;}
+
+  .site-header .nav-link{
+    color:rgba(255,255,255,.82); font-size:.95rem; padding:.5rem 0; margin:0 1.1rem;
+    border-bottom:2px solid transparent;
+  }
+  .site-header .nav-link:hover{color:#fff;}
+  .site-header .nav-link.active{color:#fff; border-bottom-color:var(--gold);}
+  .navbar-toggler{border:0; padding:.4rem;}
+  .navbar-toggler:focus{box-shadow:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:calc(100vh - var(--header-h));
+    min-height:calc(100svh - var(--header-h));
+    display:flex; align-items:center;
+    padding:5rem 0 6rem;
+    color:#fff;
+    background:
+      linear-gradient(90deg, rgba(20,14,11,.92) 0%, rgba(20,14,11,.72) 42%, rgba(20,14,11,.25) 100%),
+      url('img/frente.jpeg') center/cover no-repeat,
+      radial-gradient(ellipse 60% 70% at 80% 60%, #3a2418 0%, transparent 70%),
+      var(--ink);
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:1rem;
+    font-size:.72rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--wine);
+  }
+  .eyebrow::before{content:""; width:36px; height:1px; background:currentColor; flex:none;}
+  .hero .eyebrow{color:var(--gold); margin-bottom:2rem;}
+  .hero h1{
+    font-weight:600; font-size:clamp(2.9rem, 7vw, 5.2rem); line-height:1.02; letter-spacing:-.01em; margin:0;
+  }
+  .hero h1 em{display:block; color:var(--gold); font-weight:600;}
+  .hero .lead-text{
+    font-size:1.22rem; line-height:1.65; color:rgba(255,255,255,.92);
+    max-width:36ch; margin:1.6rem 0 2.4rem;
+  }
+  .hero-actions{display:flex; align-items:center; flex-wrap:wrap; gap:1.4rem;}
+  .hoje{font-size:.88rem; color:rgba(255,255,255,.8);}
+  .hoje strong{color:#fff;}
+
+  /* ---------- Eventos privados ---------- */
+  .eventos{background:var(--paper); padding:6.5rem 0;}
+
+  /* Galeria de eventos (carrossel) */
+  .event-photo{
+    position:relative; min-height:460px; height:100%;
+    background:linear-gradient(150deg, #2b211b 0%, #1a1512 100%);
+  }
+  .event-photo .carousel-inner{position:absolute; inset:0;}
+  .event-photo .carousel-item{height:100%;}
+  .event-photo .carousel-item img{width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in;}
+  .event-photo::after{
+    content:""; position:absolute; inset:14px; border:1px solid rgba(201,162,79,.55); pointer-events:none; z-index:1;
+  }
+  .event-photo .carousel-control-prev,
+  .event-photo .carousel-control-next{
+    z-index:2; width:52px; height:52px; top:50%; bottom:auto; transform:translateY(-50%);
+    margin:0 26px; background:rgba(26,21,18,.78); border:1px solid var(--gold); color:var(--gold);
+    opacity:1; transition:background .2s ease, color .2s ease;
+  }
+  .event-photo .carousel-control-prev{left:0;}
+  .event-photo .carousel-control-next{right:0;}
+  .event-photo .carousel-control-prev:hover,
+  .event-photo .carousel-control-next:hover{background:var(--gold); color:var(--ink);}
+  .event-photo .carousel-control-prev i,
+  .event-photo .carousel-control-next i{font-size:1.2rem;}
+  .event-photo .carousel-indicators{z-index:2; margin-bottom:1.6rem;}
+  .event-photo .carousel-indicators [data-bs-target]{
+    width:28px; height:3px; border:0; background-color:#fff; opacity:.45; margin:0 4px;
+  }
+  .event-photo .carousel-indicators .active{background-color:var(--gold); opacity:1;}
+
+  /* Foto ampliada (lightbox) */
+  .modal-backdrop.show{opacity:.9;}
+  .lightbox-content{background:transparent; border:0; position:relative; align-items:center;}
+  .lightbox-content img{max-width:100%; max-height:84vh; object-fit:contain; display:block; margin:0 auto;}
+  .lb-close, .lb-nav{
+    position:absolute; z-index:2; width:46px; height:46px; display:grid; place-items:center;
+    background:rgba(26,21,18,.82); border:1px solid var(--gold); color:var(--gold);
+    transition:background .2s ease, color .2s ease;
+  }
+  .lb-close:hover, .lb-nav:hover{background:var(--gold); color:var(--ink);}
+  .lb-close{top:12px; right:12px;}
+  .lb-nav{top:50%; transform:translateY(-50%);}
+  .lb-prev{left:12px;}
+  .lb-next{right:12px;}
+  .lb-count{
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+    background:rgba(26,21,18,.78); color:#fff; font-size:.8rem; padding:.3rem .9rem;
+  }
+
+  .h2-pp{font-size:clamp(2.1rem, 4.2vw, 3.3rem); font-weight:600; line-height:1.08; margin:1.4rem 0 0; color:var(--text);}
+  .h2-pp em{display:block; color:var(--gold); font-weight:600;}
+  .eventos p.desc{color:var(--muted); font-size:1.05rem; line-height:1.7; max-width:46ch; margin:1.4rem 0 1.8rem;}
+  .feature-list{list-style:none; padding:0; margin:0 0 2.2rem;}
+  .feature-list li{display:flex; gap:.9rem; align-items:center; padding:.8rem 0; border-bottom:1px solid var(--line); font-size:.98rem;}
+  .feature-list li:first-child{border-top:1px solid var(--line);}
+  .feature-list i{color:var(--wine); font-size:1.1rem;}
+
+  /* ---------- Visite ---------- */
+  .visite{background:var(--cream); padding:6.5rem 0;}
+  .visit-card{background:var(--card); box-shadow:0 24px 60px -30px rgba(40,25,15,.35);}
+  .map-wrap{position:relative; height:100%; min-height:380px; background:#e7dccb;}
+  .map-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0; filter:grayscale(.3) sepia(.12);}
+  .visit-info{padding:3.2rem 3rem;}
+  .visit-info h2{font-size:clamp(2rem, 3.4vw, 2.7rem); font-weight:600; line-height:1.1; margin:1.4rem 0 2rem;}
+  .info-item{display:flex; gap:1.1rem; margin-bottom:1.6rem;}
+  .info-icon{
+    width:42px; height:42px; flex:none; display:grid; place-items:center;
+    border:1px solid var(--line); color:var(--wine); font-size:1.05rem;
+  }
+  .info-label{font-size:.66rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--wine); margin-bottom:.35rem;}
+  .info-value{font-size:.98rem; line-height:1.55; margin:0;}
+
+  /* ---------- Avaliações ---------- */
+  .avaliacoes{background:var(--paper); padding:6rem 0 6.5rem;}
+  .avaliacoes h2{font-size:clamp(2.2rem, 4.4vw, 3.4rem); font-weight:600; line-height:1.08; margin:1.4rem 0 0;}
+  .avaliacoes h2 em{display:block; color:var(--gold);}
+  .g-badge{display:flex; align-items:center; gap:.9rem; padding-left:1.6rem; border-left:1px solid var(--line);}
+  .g-badge .g-name{font-size:.78rem; font-weight:700; line-height:1.2;}
+  .g-badge .g-score{display:flex; align-items:center; gap:.45rem; font-size:.8rem; font-weight:700; margin-top:.2rem;}
+  .stars{color:var(--gold); font-size:.7rem; letter-spacing:.12em; white-space:nowrap;}
+  .review{
+    background:var(--card); border:1px solid var(--line); height:100%;
+    padding:1.9rem 1.9rem 1.5rem; display:flex; flex-direction:column;
+  }
+  .review-top{display:flex; justify-content:space-between; align-items:center;}
+  .review blockquote{
+    font-family:'Playfair Display', serif; font-style:italic; font-size:1.06rem; line-height:1.75;
+    margin:1.6rem 0 2rem; flex:1; color:var(--text);
+  }
+  .review-author{display:flex; align-items:center; gap:.9rem; padding-top:1.3rem; border-top:1px solid var(--line);}
+  .avatar{
+    width:40px; height:40px; border-radius:50%; flex:none; overflow:hidden;
+    display:grid; place-items:center; background:#f1e4e0; color:var(--wine); font-weight:700; font-size:.95rem;
+  }
+  .avatar img{width:100%; height:100%; object-fit:cover;}
+  .author-name{font-size:.86rem; font-weight:700; line-height:1.2;}
+  .author-meta{font-size:.7rem; color:var(--muted);}
+
+  /* ---------- Footer ---------- */
+  .site-footer{background:var(--ink); color:rgba(255,255,255,.62); padding:4.5rem 0 0;}
+  .footer-title{font-size:.66rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.3rem;}
+  .site-footer a.f-link{display:block; color:rgba(255,255,255,.88); font-size:.88rem; padding:.45rem 0;}
+  .site-footer a.f-link:hover{color:var(--gold);}
+  .site-footer a.f-link.social{display:flex; align-items:center; gap:.7rem;}
+  .site-footer a.f-link.social i{color:var(--gold); font-size:1.1rem;}
+  .site-footer p{font-size:.85rem; line-height:1.9; margin:0;}
+  .footer-bottom{
+    margin-top:3.5rem; padding:1.4rem 0; border-top:1px solid rgba(255,255,255,.08);
+    display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.72rem; color:rgba(255,255,255,.4);
+  }
+
+  /* ---------- WhatsApp flutuante ---------- */
+  .wa-float{
+    position:fixed; right:28px; bottom:28px; z-index:1040;
+    display:inline-flex; align-items:center; gap:.7rem;
+    background:var(--wa); color:#fff; font-weight:700; font-size:.78rem; letter-spacing:.07em; text-transform:uppercase;
+    padding:.95rem 1.4rem; border-radius:999px; box-shadow:0 12px 28px -8px rgba(0,0,0,.45);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .wa-float:hover{color:#fff; background:#18a35a; transform:translateY(-2px);}
+  .wa-float i{font-size:1.35rem;}
+
+  @media (max-width:991.98px){
+    .site-header .navbar-collapse{padding:1rem 0 1.4rem;}
+    .site-header .nav-link{margin:0; display:inline-block;}
+    .visit-info{padding:2.4rem 1.6rem;}
+    .g-badge{border-left:0; padding-left:0; margin-top:1.6rem;}
+  }
+  @media (max-width:767.98px){
+    .event-photo{min-height:320px;}
+  }
+  @media (max-width:575.98px){
+    .brand-logo{height:46px;}
+    .site-footer .brand-logo{height:60px;}
+    .wa-float{right:16px; bottom:16px; padding:.9rem;}
+    .wa-float span{display:none;}
+    .wa-float i{font-size:1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<div class="site-header">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="brand" href="#inicio" aria-label="Pichetti & Pichetti, início">
+        <!-- Logo completa em img/logo.png. Se o arquivo não existir, aparece o nome em texto. -->
+        <img class="brand-logo" id="brandLogo" src="img/logo.png" alt="Pichetti &amp; Pichetti Churrascaria">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
+        <i class="bi bi-list text-white fs-2"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eventos">Eventos Privados</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="inicio">
+  <div class="container">
+    <div class="eyebrow">Tradição à mesa desde 2012</div>
+    <h1>O sabor que reúne <em>gerações.</em></h1>
+    <p class="lead-text">Churrasco no ponto, hospitalidade de casa e momentos que ficam na memória.</p>
+    <div class="hero-actions">
+      <a class="btn-pp" href="#contato"><i class="bi bi-geo-alt"></i> Como chegar</a>
+      <span class="hoje" id="hojeStatus"><strong>Hoje</strong> · Almoço 11h–14h</span>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= EVENTOS PRIVADOS ======================= -->
+<section class="eventos" id="eventos">
+  <div class="container">
+    <div class="row g-5 align-items-stretch">
+      <div class="col-md-6">
+        <!-- Galeria: cada <div class="carousel-item"> é uma foto. Para adicionar, copie um bloco e troque o nome do arquivo.
+             Lembre de criar também um botão novo em "carousel-indicators" (data-bs-slide-to com o próximo número). -->
+        <div id="eventosCarousel" class="carousel slide event-photo" data-bs-ride="false" role="region" aria-roledescription="carrossel" aria-label="Fotos dos eventos privados">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#eventosCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Foto 1"></button>
+            <button type="button" data-bs-target="#eventosCarousel" data-bs-slide-to="1" aria-label="Foto 2"></button>
+            <button type="button" data-bs-target="#eventosCarousel" data-bs-slide-to="2" aria-label="Foto 3"></button>
+            <button type="button" data-bs-target="#eventosCarousel" data-bs-slide-to="3" aria-label="Foto 4"></button>
+            <button type="button" data-bs-target="#eventosCarousel" data-bs-slide-to="4" aria-label="Foto 5"></button>
+          </div>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="img/eventos/salao2.jpeg" alt="Salão preparado para um evento privado" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item">
+              <img src="img/eventos/salao1.jpeg" alt="Mesa de confraternização montada" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item">
+              <img src="img/eventos/salao3.jpeg" alt="Comemoração de aniversário no salão" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item">
+              <img src="img/eventos/salao4.jpeg" alt="Salão da churrascaria para festas" onerror="this.style.display='none'">
+            </div>
+            <div class="carousel-item">
+              <img src="img/eventos/salao5.jpeg" alt="Ambiente do salão de eventos" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#eventosCarousel" data-bs-slide="prev" aria-label="Foto anterior">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#eventosCarousel" data-bs-slide="next" aria-label="Próxima foto">
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <div class="eyebrow">Eventos privados</div>
+        <h2 class="h2-pp">A noite inteira <em>reservada para você.</em></h2>
+        <p class="desc">Aniversários, confraternizações de empresa, jantares de família e comemorações especiais. Reservamos o salão para o seu grupo e montamos o cardápio junto com você.</p>
+        <ul class="feature-list">
+          <li><i class="bi bi-door-closed"></i> Salão reservado só para o seu grupo</li>
+          <li><i class="bi bi-journal-text"></i> Cardápio combinado com antecedência</li>
+          <li><i class="bi bi-people"></i> Atendimento dedicado do início ao fim</li>
+        </ul>
+        <div>
+          <a class="btn-pp" href="#" data-wa="evento"><i class="bi bi-whatsapp"></i> Solicitar orçamento pelo WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VISITE / MAPA ======================= -->
+<section class="visite" id="contato">
+  <div class="container">
+    <div class="visit-card">
+      <div class="row g-0">
+        <div class="col-lg-7">
+          <div class="map-wrap">
+            <iframe id="mapa" title="Localização da Pichetti & Pichetti no Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="visit-info">
+            <div class="eyebrow">Venha nos visitar</div>
+            <h2>Uma mesa espera por você.</h2>
+
+            <div class="info-item">
+              <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+              <div>
+                <div class="info-label">Endereço</div>
+                <p class="info-value" id="enderecoTexto">Av. Militar, 2449 — Glória, Vacaria — RS<br>CEP 95216-014</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon"><i class="bi bi-clock"></i></div>
+              <div>
+                <div class="info-label">Horários</div>
+                <p class="info-value">Segunda a segunda, 11h–14h<br><span class="text-muted">Fechado apenas em alguns feriados</span></p>
+              </div>
+            </div>
+
+            <a class="btn-pp btn-pp-outline sm mt-2" id="linkRotas" href="#" target="_blank" rel="noopener">
+              <i class="bi bi-map"></i> Ver rotas no Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= AVALIAÇÕES ======================= -->
+<section class="avaliacoes" id="avaliacoes">
+  <div class="container">
+    <div class="row align-items-end mb-5 gy-2">
+      <div class="col-lg-9">
+        <div class="eyebrow">Quem vem, recomenda</div>
+        <h2>Histórias de quem <em>sentou à nossa mesa</em></h2>
+      </div>
+      <div class="col-lg-3 d-flex justify-content-lg-end">
+        <div class="g-badge">
+          <svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.9c-.5 2.8-2.1 5.1-4.4 6.7v5.5h7.1c4.2-3.8 6.5-9.5 6.5-16.2z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 40.9 15.5 46 24 46z"/><path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.3-2.9.7-4.3v-5.7H4.5C3 17 2.2 20.4 2.2 24s.8 7 2.3 10l7.3-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.5 2 8.1 7.1 4.5 14l7.3 5.7c1.7-5.2 6.5-8.9 12.2-8.9z"/></svg>
+          <div>
+            <div class="g-name">Google Reviews</div>
+            <div class="g-score"><span id="notaGoogle">4,8</span> <span class="stars" aria-hidden="true">★★★★★</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4" id="listaAvaliacoes"><!-- preenchido via JS --></div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-4">
+        <a class="brand" href="#inicio">
+          <img class="brand-logo" id="brandLogoFooter" src="img/logo.png" alt="Pichetti &amp; Pichetti Churrascaria">
+        </a>
+        <p class="mt-4" style="max-width:28ch;">Tradição, sabor e hospitalidade servidos à mesa desde 2012.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-title">Navegação</div>
+        <a class="f-link" href="#inicio">Início</a>
+        <a class="f-link" href="#eventos">Eventos Privados</a>
+        <a class="f-link" href="#contato">Contato</a>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="footer-title">Visite-nos</div>
+        <p>Av. Militar, 2449 — Glória, Vacaria — RS</p>
+        <p>Segunda a segunda · 11h–14h</p>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-title">Redes sociais</div>
+        <a class="f-link social" href="https://www.instagram.com/churrascaria.pichetti/" target="_blank" rel="noopener">
+          <i class="bi bi-instagram" aria-hidden="true"></i> @churrascaria.pichetti
+        </a>
+        <a class="f-link social" href="https://www.facebook.com/Churrascariapichettiepichetti/" target="_blank" rel="noopener">
+          <i class="bi bi-facebook" aria-hidden="true"></i> Pichetti &amp; Pichetti
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="ano"></span> Pichetti &amp; Pichetti. Todos os direitos reservados.</span>
+      <span>Feito com cuidado, como o nosso churrasco.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Foto ampliada -->
+<div class="modal fade" id="lightbox" tabindex="-1" aria-label="Foto ampliada" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content lightbox-content">
+      <button type="button" class="lb-close" data-bs-dismiss="modal" aria-label="Fechar"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+      <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Foto anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+      <img id="lbImg" src="" alt="">
+      <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Próxima foto"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      <div class="lb-count" id="lbCount" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<a class="wa-float" href="#" data-wa="contato" aria-label="Fale conosco pelo WhatsApp">
+  <i class="bi bi-whatsapp"></i><span>Fale conosco</span>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — edite só este bloco
+   ===================================================================== */
+const CONFIG = {
+  // WhatsApp no formato internacional, só números (55 + DDD + número)
+  whatsapp: "555435115515",
+
+  mensagens: {
+    contato: "Olá! Gostaria de falar com a equipe, vim pelo Site.",
+    evento:  "Olá! Gostaria de um orçamento para uma festa privada, vim pelo Site."
+  },
+
+  // Texto usado para posicionar o mapa
+  endereco: "Churrascaria Pichetti & Pichetti, Av. Militar, 2449 - Glória, Vacaria - RS",
+  mapaBusca: "Churrascaria Pichetti & Pichetti, Av. Militar, 2449 - Glória, Vacaria - RS",
+
+  // Botão "Ver rotas no Google Maps"
+  linkRotas: "https://www.google.com/maps/dir//Churrascaria+Pichetti+%26+Pichetti,+Av.+Militar,+2449+-+Gl%C3%B3ria,+Vacaria+-+RS,+95200-000/@-28.505654,-50.9601882,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x951e43dd64b68db9:0xd7603ae115f464fc!2m2!1d-50.9501077!2d-28.5007251?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+
+  // Feriados em que não abre, no formato "AAAA-MM-DD". Ex.: ["2026-12-25", "2027-01-01"]
+  feriadosFechados: [],
+};
+
+// Avaliações de exemplo (usadas enquanto a API do Google não estiver configurada)
+const AVALIACOES_EXEMPLO = {
+  nota: 4.5,
+  itens: [
+    { autor: "Marcos A.", meta: "Local Guide · 32 avaliações", nota: 5, texto: "Carnes no ponto certo, buffet muito completo e um atendimento que faz a gente se sentir em casa." },
+    { autor: "Ana Paula R.", meta: "Local Guide · 8 avaliações", nota: 5, texto: "Nosso almoço em família foi impecável. O ambiente é aconchegante e a costela simplesmente desmancha." },
+    { autor: "Ricardo M.", meta: "Local Guide · 76 avaliações", nota: 5, texto: "Tradição de verdade. Excelente variedade, equipe atenciosa e ótimo custo-benefício. Voltarei sempre." }
+  ]
+};
+
+/* ===================================================================== */
+
+// WhatsApp: todos os botões com data-wa
+document.querySelectorAll('[data-wa]').forEach(el => {
+  const msg = CONFIG.mensagens[el.dataset.wa] || CONFIG.mensagens.contato;
+  el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
+// Mapa do Google (embed sem chave) e rota
+document.getElementById('mapa').src =
+  `https://www.google.com/maps?q=${encodeURIComponent(CONFIG.mapaBusca)}&hl=pt-BR&z=16&output=embed`;
+document.getElementById('linkRotas').href = CONFIG.linkRotas;
+
+// Logo: se img/logo.png não existir, mostra o nome em texto
+function logoFallback(img){
+  img.addEventListener('error', () => {
+    const t = document.createElement('span');
+    t.innerHTML = '<span class="brand-name">Pichetti <em>&amp;</em> Pichetti</span><span class="brand-sub">Churrascaria</span>';
+    img.replaceWith(t);
+  }, { once: true });
+  if (img.complete && img.naturalWidth === 0) img.dispatchEvent(new Event('error'));
+}
+logoFallback(document.getElementById('brandLogo'));
+logoFallback(document.getElementById('brandLogoFooter'));
+
+// Ano no rodapé
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+// "Hoje": aberto todos os dias, exceto nos feriados de CONFIG.feriadosFechados
+(function(){
+  const el = document.getElementById('hojeStatus');
+  const d = new Date();
+  const hoje = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  if (CONFIG.feriadosFechados.includes(hoje)) {
+    el.innerHTML = '<strong>Hoje</strong> · Fechado por conta do feriado';
+  }
+})();
+
+// Menu ativo conforme a rolagem
+new bootstrap.ScrollSpy(document.body, { target: '#navMenu', rootMargin: '-35% 0px -55% 0px' });
+
+/* ---------------------- Ampliar fotos dos eventos ---------------------- */
+(function(){
+  const carouselEl = document.getElementById('eventosCarousel');
+  const modalEl = document.getElementById('lightbox');
+  const modal = new bootstrap.Modal(modalEl);
+  const lbImg = document.getElementById('lbImg');
+  const lbCount = document.getElementById('lbCount');
+  const todas = [...carouselEl.querySelectorAll('.carousel-item img')];
+  let lista = [];
+  let atual = 0;
+
+  function mostrar(i){
+    atual = (i + lista.length) % lista.length;
+    lbImg.src = lista[atual].currentSrc || lista[atual].src;
+    lbImg.alt = lista[atual].alt;
+    lbCount.textContent = `${atual + 1} / ${lista.length}`;
+  }
+
+  function abrir(img){
+    lista = todas.filter(i => i.naturalWidth > 0);   // ignora fotos que não carregaram
+    mostrar(lista.indexOf(img));
+    modal.show();
+  }
+
+  todas.forEach(img => {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Ampliar foto: ' + img.alt);
+    img.addEventListener('click', () => abrir(img));
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(img); }
+    });
+  });
+
+  document.getElementById('lbPrev').addEventListener('click', () => mostrar(atual - 1));
+  document.getElementById('lbNext').addEventListener('click', () => mostrar(atual + 1));
+  modalEl.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') mostrar(atual - 1);
+    if (e.key === 'ArrowRight') mostrar(atual + 1);
+  });
+
+  // Ao fechar, o carrossel volta para a foto que estava sendo vista
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    const idx = todas.indexOf(lista[atual]);
+    if (idx >= 0) bootstrap.Carousel.getOrCreateInstance(carouselEl).to(idx);
+  });
+})();
+
+/* ---------------------- Avaliações ---------------------- */
+const listaEl = document.getElementById('listaAvaliacoes');
+const notaEl  = document.getElementById('notaGoogle');
+
+const G_ICON = `<svg width="18" height="18" viewBox="0 0 48 48" aria-label="Google"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.9c-.5 2.8-2.1 5.1-4.4 6.7v5.5h7.1c4.2-3.8 6.5-9.5 6.5-16.2z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 40.9 15.5 46 24 46z"/><path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.3-2.9.7-4.3v-5.7H4.5C3 17 2.2 20.4 2.2 24s.8 7 2.3 10l7.3-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.5 2 8.1 7.1 4.5 14l7.3 5.7c1.7-5.2 6.5-8.9 12.2-8.9z"/></svg>`;
+
+function renderAvaliacoes(itens, nota){
+  if (nota) notaEl.textContent = Number(nota).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  listaEl.innerHTML = '';
+  itens.forEach(r => {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4';
+
+    const card = document.createElement('article');
+    card.className = 'review';
+
+    const top = document.createElement('div');
+    top.className = 'review-top';
+    const stars = document.createElement('span');
+    stars.className = 'stars';
+    stars.setAttribute('aria-label', `${r.nota} de 5 estrelas`);
+    stars.textContent = '★'.repeat(Math.round(r.nota));
+    const g = document.createElement('span');
+    g.innerHTML = G_ICON;
+    top.append(stars, g);
+
+    const quote = document.createElement('blockquote');
+    quote.textContent = `“${r.texto.trim()}”`;
+
+    const author = document.createElement('div');
+    author.className = 'review-author';
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    avatar.textContent = r.autor.charAt(0).toUpperCase();
+    const info = document.createElement('div');
+    const nome = document.createElement('div');
+    nome.className = 'author-name'; nome.textContent = r.autor;
+    const meta = document.createElement('div');
+    meta.className = 'author-meta'; meta.textContent = r.meta || '';
+    info.append(nome, meta);
+    author.append(avatar, info);
+
+    card.append(top, quote, author);
+    col.appendChild(card);
+    listaEl.appendChild(col);
+  });
+}
+
+// Mostra as avaliações escritas
+renderAvaliacoes(AVALIACOES_EXEMPLO.itens, AVALIACOES_EXEMPLO.nota);
+</script>
+</body>
+</html>
